@@ -1,0 +1,23 @@
+@import "./mixins";
+
+$xs:      0;
+$sm:  576px;
+$md:  768px;
+$lg:  992px;
+$xl: 1200px;
+
+$white:      #ffffff;
+$black:      #222222;
+$grey:       #272729;
+$dark-grey:  #222222;
+$light-grey: #2d2d2d;
+$pink:       #f7546e;
+
+$border-radius:     4px;
+$border-radius-md:  6px;
+$border-radius-lg: 10px;
+
+$transition:    .2s;
+$transition-md: .4s;
+
+$card-shadow: 0px 2px 4px 0px #00000080;

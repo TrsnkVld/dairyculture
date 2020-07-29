@@ -1,0 +1,51 @@
+.form {
+    &-control {
+        font-size: inherit;
+        font-weight: bold;
+        border: none;
+        border-radius: $border-radius-lg;
+        background: #d1d1d1;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        height: auto;
+
+        &:focus {
+            box-shadow: none;
+            border: none;
+            background: #d1d1d1;
+        }
+
+        &[type=search] {
+            padding-left: 0;
+        }
+    }
+}
+
+.input-group {
+    &-prepend {
+        border-radius: $border-radius-lg 0 0 $border-radius-lg;
+        background: #d1d1d1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+    }
+}
+
+.btn {
+    padding: 7px 12px;
+
+    &-outline {
+        &-primary {
+            color: inherit;
+            min-width: 86px;
+            border-radius: $border-radius-md;
+            background: #ebebeb;
+            transition: $transition;
+
+            &:hover {
+                background: #cbcaca;
+            }
+        }
+    }
+}

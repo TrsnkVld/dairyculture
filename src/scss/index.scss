@@ -1,0 +1,50 @@
+@import "bootstrap-override";
+@import "variables";
+@import "mixins";
+@import "svgicons";
+@import "ui.scss";
+
+body {
+    background: #DBDBDB;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 19px;
+    color: $black;
+
+    *:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+.row {
+    margin: 0 -5px;
+
+    &>div {
+        padding: 0 5px;
+    }
+
+    @include up($md) {
+        margin: 0 -10px;
+
+        &>div {
+            padding: 0 10px;
+        }
+    }
+}
+
+.container {
+    padding: 0 10px;
+    
+    @include up($md) {
+        padding: 0 10px;
+    }
+}
+
+a {
+    color: inherit;
+}
+
+main {
+    padding-top: 112px;
+}
