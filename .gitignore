@@ -20,4 +20,5 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-/src/icons/index.js
+
+/src/icons/
