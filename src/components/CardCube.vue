@@ -29,6 +29,7 @@ export default {
     cursor: pointer;
     background-position: center;
     background-size: cover;
+    transition: box-shadow, transform, $transition-md ease;
 
     &::after {
         display: block;
@@ -36,6 +37,11 @@ export default {
         padding-top: 100%;
         width: 100%;
         pointer-events: none;
+    }
+
+    &:hover {
+        box-shadow: $card-shadow-hovered;
+        transform: scale(1.03);
     }
 
     @include up($md) {

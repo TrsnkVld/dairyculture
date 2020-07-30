@@ -38,49 +38,64 @@ export default {
 				img: "art/5.png",
 			},
 			{
-				img: "art/1.png",
+				img: "art/6.png",
 			},
 			{
-				img: "art/2.png",
+				img: "art/7.png",
 			},
 			{
-				img: "art/3.png",
+				img: "art/8.png",
 			},
 			{
-				img: "art/4.png",
+				img: "art/9.png",
 			},
 			{
-				img: "art/5.png",
+				img: "art/10.png",
 			},
 			{
-				img: "art/1.png",
+				img: "art/11.png",
 			},
 			{
-				img: "art/2.png",
+				img: "art/12.png",
 			},
 			{
-				img: "art/3.png",
+				img: "art/13.png",
 			},
 			{
-				img: "art/4.png",
+				img: "art/14.png",
 			},
 			{
-				img: "art/5.png",
+				img: "art/15.png",
 			},
 			{
-				img: "art/1.png",
+				img: "art/16.png",
 			},
 			{
-				img: "art/2.png",
+				img: "art/17.png",
 			},
 			{
-				img: "art/3.png",
+				img: "art/18.png",
 			},
 			{
-				img: "art/4.png",
+				img: "art/19.png",
 			},
 			{
-				img: "art/5.png",
+				img: "art/20.png",
+			},
+			{
+				img: "art/21.png",
+			},
+			{
+				img: "art/22.png",
+			},
+			{
+				img: "art/23.png",
+			},
+			{
+				img: "art/24.png",
+			},
+			{
+				img: "art/25.png",
 			},
 		]
 	}),
