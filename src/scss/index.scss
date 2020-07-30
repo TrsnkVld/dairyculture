@@ -47,8 +47,10 @@ a {
 
 main {
     padding-top: 92px;
-
+    padding-bottom: 70px;
+    
     @include up($md) {
         padding-top: 112px;
+        padding-bottom: 111px;
     }
 }

@@ -2,16 +2,18 @@
 	<div id="app">
 		<HeaderLayout />
 		<router-view />
-		<footer>footer</footer>
+		<FooterLayout />
 	</div>
 </template>
 
 <script>
 import HeaderLayout from "@/components/layout/HeaderLayout";
+import FooterLayout from "@/components/layout/FooterLayout";
 
 export default {
 	components: {
 		HeaderLayout,
+		FooterLayout
 	}
 }
 </script>
