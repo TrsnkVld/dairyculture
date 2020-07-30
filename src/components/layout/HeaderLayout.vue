@@ -3,24 +3,26 @@
 		<b-container>
 			<b-row>
 				<b-col cols="12" md="5" order-md="1" class="d-flex align-items-center">
-					<b-input-group class="header__search">
+					<b-input-group class="header-search">
 						<b-input-group-prepend>
 							<svgicon name="search" width="14px" height="14px" />
 						</b-input-group-prepend>
 						<b-form-input type="search" placeholder="Search" />
 					</b-input-group>
-					<svgicon name="settings" class="header__filters" />
+					<svgicon name="settings" class="header-filters" />
 				</b-col>
 				<b-col cols="12" md="7" order-md="0" class="d-flex align-items-center">
-					<b-link :to="{name: Home}">
-						<svgicon name="logo" class="header__logo" />
+					<b-link :to="{name: Home}" class="d-none d-lg-block">
+						<svgicon name="logo" class="header-logo" />
 					</b-link>
 
-					<b-nav class="header__nav">
-						<b-nav-item class="header__nav-item" href="#1" v-for="(item, index) in links" :key="index">
-							<b-button variant="outline-primary">{{ item.name }}</b-button>
-						</b-nav-item>
-					</b-nav>
+					<div class="overflow-wrap">
+						<b-nav class="header-nav">
+							<b-nav-item class="header-nav__item" href="#1" v-for="(item, index) in links" :key="index">
+								<b-button variant="outline-primary">{{ item.name }}</b-button>
+							</b-nav-item>
+						</b-nav>
+					</div>
 				</b-col>
 			</b-row>
 		</b-container>
@@ -59,18 +61,22 @@ export default {
 	width: 100%;
 	padding: 10px 0;
 
-	&__logo {
+	&-logo {
 		width: 97px;
 		height: 17px;
 		margin-right: 41px;
 		flex-shrink: 0;
 	}
 
-	&__search {
+	&-search {
+		padding-right: 10px;
+
+		@include up($md) {
 		padding-right: 30px;
+		}
 	}
 
-	&__filters {
+	&-filters {
 		cursor: pointer;
 		width: 30px;
 		height: 30px;
@@ -82,16 +88,44 @@ export default {
 		}
 	}
 
-	&__nav {
-		margin: 0 -9px;
-		&-item {
+	&-nav {
+		&__item {
 			display: block;
-			margin: 0 9px;
+			margin: 0 5px;
 
 			a {
 				padding: 0;
 				color: $black;
 			}
+
+			@include up($md) {
+				margin: 0 9px;
+			}
+		}
+
+		@include adopt($lg) {
+			overflow: auto !important;
+			flex-flow: row !important;
+		}
+
+		@include adopt($md) {
+			padding: 0 5px 50px !important;
+		}
+
+		@include up($md) {
+			padding: 0;
+			margin: 0 -9px;
+		}
+	}
+
+	.overflow-wrap {
+		height: 30px;
+		overflow: hidden;
+		margin: 10px -10px 0;
+
+		@include up($md) {
+			height: auto;
+			margin: 0;
 		}
 	}
 

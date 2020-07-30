@@ -1,10 +1,10 @@
 import Vue from 'vue';
+import './plugins/bootstrap';
+import './plugins/svgicons';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 
-import './plugins/bootstrap';
-import './plugins/svgicons';
 import './scss/index.scss';
 
 Vue.config.productionTip = false;

@@ -3,10 +3,11 @@
         font-size: inherit;
         font-weight: bold;
         border: none;
-        border-radius: $border-radius-lg;
+        border-radius: $border-radius-md;
         background: #d1d1d1;
-        padding-top: 8px;
-        padding-bottom: 8px;
+
+        padding-top: 3px;
+        padding-bottom: 3px;
         height: auto;
 
         &:focus {
@@ -15,30 +16,40 @@
             background: #d1d1d1;
         }
 
-        &[type=search] {
+        &[type="search"] {
             padding-left: 0;
+        }
+
+        @include up($md) {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            border-radius: $border-radius-lg;
         }
     }
 }
 
 .input-group {
     &-prepend {
-        border-radius: $border-radius-lg 0 0 $border-radius-lg;
+        border-radius: $border-radius-md 0 0 $border-radius-md;
         background: #d1d1d1;
         display: flex;
         justify-content: center;
         align-items: center;
         width: 40px;
+
+        @include up($md) {
+            border-radius: $border-radius-lg 0 0 $border-radius-lg;
+        }
     }
 }
 
 .btn {
-    padding: 7px 12px;
+    padding: 2px 12px;
 
     &-outline {
         &-primary {
             color: inherit;
-            min-width: 86px;
+            min-width: 99px;
             border-radius: $border-radius-md;
             background: #ebebeb;
             transition: $transition;
@@ -46,6 +57,14 @@
             &:hover {
                 background: #cbcaca;
             }
+
+            @include up($md) {
+                min-width: 86px;
+            }
         }
+    }
+
+    @include up($md) {
+        padding: 7px 12px;
     }
 }

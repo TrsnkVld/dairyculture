@@ -1,5 +1,5 @@
 @mixin adopt($value, $prop: max-width) {
-    @media only screen and (#{$prop}: #{($value - 1)}) and (orientation: portrait) {
+    @media only screen and (#{$prop}: #{($value - 1)}) {
         @content;
     }
 }
