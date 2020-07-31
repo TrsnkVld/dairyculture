@@ -1,7 +1,9 @@
 <template>
 	<div id="app">
 		<HeaderLayout />
-		<router-view />
+		<transition name="route" mode="out-in">
+			<router-view />
+		</transition>
 		<FooterLayout />
 	</div>
 </template>
@@ -13,9 +15,15 @@ import FooterLayout from "@/components/layout/FooterLayout";
 export default {
 	components: {
 		HeaderLayout,
-		FooterLayout
-	}
-}
+		FooterLayout,
+	},
+
+	watch: {
+		$route(to, from) {
+			document.title = to.meta.title || 'IBUY.ART';
+		}
+	},
+};
 </script>
 
 <style lang="scss">
