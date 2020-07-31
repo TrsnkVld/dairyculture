@@ -8,17 +8,19 @@
 					variant="outline-primary"
 					@click="(btn.name) ? showRange() : null"
 				>{{ (btn.name) ? btn.name : btn }}</b-button>
-				<template v-if="btn.range && isRangeShowing">
-					<p class="range-title" :key="`text-${i}`">${{ btn.range[0] | nf }} - ${{ btn.range[1] | nf }}</p>
-					<vue-slider
-						class="range-stripe"
-						:key="`slider-${i}`"
-						v-model="btn.range"
-						:contained="true"
-						:min="0"
-						:max="1000000"
-					/>
-				</template>
+				<transition name="range" :key="`anim-${i}`">
+					<div class="range" v-if="btn.range && isRangeShowing">
+						<p class="range-title" :key="`text-${i}`">${{ btn.range[0] | nf }} - ${{ btn.range[1] | nf }}</p>
+						<vue-slider
+							class="range-stripe"
+							:key="`slider-${i}`"
+							v-model="btn.range"
+							:contained="true"
+							:min="0"
+							:max="1000000"
+						/>
+					</div>
+				</transition>
 			</template>
 		</div>
 	</div>
@@ -52,7 +54,7 @@ export default {
 
 <style lang="scss">
 .filter-group {
-    margin-top: 20px;
+	margin-top: 11px;
 
 	&__title {
 		color: #717171;
@@ -64,29 +66,33 @@ export default {
 	&__item {
 		.btn {
 			margin-right: 9px;
+			margin-bottom: 9px;
 
 			&:last-of-type {
 				margin-right: 0;
 			}
 		}
-    }
-    
-    .range {
-        &-title {
-            margin-top: 20px;
-            margin-bottom: 0;
-            color: #717171;
-            font-size: 14px;
-            text-align: center;
-        }
+	}
 
-        &-stripe {
+	.range {
+		overflow: hidden;
 
-        }
-    }
+		&-title {
+			margin-top: 20px;
+			margin-bottom: 0;
+			color: #717171;
+			font-size: 14px;
+			text-align: center;
+            transition: opacity 0.4s ease;
+		}
 
-    &:first-of-type {
-        margin-top: 0;
-    }
+		&-stripe {
+            transition: opacity 0.4s ease;
+		}
+	}
+
+	&:first-of-type {
+		margin-top: 0;
+	}
 }
 </style>
