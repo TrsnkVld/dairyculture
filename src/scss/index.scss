@@ -2,11 +2,12 @@
 @import "variables";
 @import "mixins";
 @import "svgicons";
-@import "ui.scss";
+@import "ui";
+@import "transitions";
 
 body {
-    background: #DBDBDB;
-    font-family: 'Roboto', sans-serif;
+    background: #dbdbdb;
+    font-family: "Roboto", sans-serif;
     font-size: 16px;
     line-height: 19px;
     color: $black;
@@ -20,14 +21,14 @@ body {
 .row {
     margin: 0 -5px;
 
-    &>div {
+    & > div {
         padding: 0 5px;
     }
 
     @include up($md) {
         margin: 0 -10px;
 
-        &>div {
+        & > div {
             padding: 0 10px;
         }
     }
@@ -35,7 +36,7 @@ body {
 
 .container {
     padding: 0 10px;
-    
+
     @include up($md) {
         padding: 0 10px;
     }
@@ -48,9 +49,16 @@ a {
 main {
     padding-top: 92px;
     padding-bottom: 70px;
-    
+
     @include up($md) {
         padding-top: 112px;
         padding-bottom: 111px;
     }
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 36px;
+    color: #717171;
 }

@@ -1,0 +1,13 @@
+.filters-aside {
+	&-enter-active, &-leave-active {
+		transition: .4s ease;
+		transform: translateX(0);
+		opacity: 1;
+	}
+
+	&-enter, &-leave-to {
+		transition: .4s ease;
+		transform: translateX(200px);
+		opacity: 0;
+	}
+}

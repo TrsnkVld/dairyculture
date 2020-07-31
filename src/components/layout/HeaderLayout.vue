@@ -9,16 +9,21 @@
 						</b-input-group-prepend>
 						<b-form-input type="search" placeholder="Search" />
 					</b-input-group>
-					<svgicon name="settings" class="header-filters" />
+					<svgicon name="settings" class="header-filters" @click="isFiltersShowing = !isFiltersShowing" />
 				</b-col>
 				<b-col cols="12" md="7" order-md="0" class="d-flex align-items-center">
-					<b-link :to="{name: Home}" class="d-none d-lg-block">
+					<b-link :to="{name: 'Home'}" class="d-none d-lg-block">
 						<svgicon name="logo" class="header-logo" />
 					</b-link>
 
 					<div class="overflow-wrap">
 						<b-nav class="header-nav">
-							<b-nav-item class="header-nav__item" href="#1" v-for="(item, index) in links" :key="index">
+							<b-nav-item
+								class="header-nav__item"
+								:to="{name: 'Home'}"
+								v-for="(item, index) in links"
+								:key="index"
+							>
 								<b-button variant="outline-primary">{{ item.name }}</b-button>
 							</b-nav-item>
 						</b-nav>
@@ -26,31 +31,41 @@
 				</b-col>
 			</b-row>
 		</b-container>
+		<transition name="filters-aside">
+			<FilterAside v-if="isFiltersShowing" @onClose="isFiltersShowing = !isFiltersShowing" />
+		</transition>
 	</header>
 </template>
 
 <script>
+import FilterAside from "@/components/elements/FilterAside";
+
 export default {
 	name: "HeaderLayout",
+	components: {
+		FilterAside
+	},
 	data: () => ({
+		isFiltersShowing: false,
+		value: [250000, 800000],
 		links: [
 			{
 				name: "Top",
-				url: "#1"
+				url: "#1",
 			},
 			{
 				name: "Painters",
-				url: ""
+				url: "",
 			},
 			{
 				name: "Design",
-				url: ""
+				url: "",
 			},
 			{
 				name: "Tags",
-				url: ""
+				url: "",
 			},
-		]
+		],
 	}),
 };
 </script>
@@ -58,8 +73,12 @@ export default {
 <style lang="scss">
 .header {
 	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
 	width: 100%;
 	padding: 10px 0;
+	background: #dbdbdbe6;
 
 	&-logo {
 		width: 97px;
@@ -72,7 +91,7 @@ export default {
 		padding-right: 10px;
 
 		@include up($md) {
-		padding-right: 30px;
+			padding-right: 30px;
 		}
 	}
 

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import './plugins/bootstrap';
 import './plugins/svgicons';
+import './plugins/vuefilters';
 import App from './App.vue';
 import router from './router';
 import store from './store';

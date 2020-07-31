@@ -11,13 +11,11 @@
 </template>
 
 <script>
-import HelloWorld from "@/components/HelloWorld";
 import CardCube from "@/components/CardCube";
 
 export default {
 	name: "Home",
 	components: {
-		HelloWorld,
 		CardCube
 	},
 	data: () => ({

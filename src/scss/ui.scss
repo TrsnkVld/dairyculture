@@ -44,7 +44,7 @@
 }
 
 .btn {
-    padding: 2px 12px;
+    padding: 2px 6px;
 
     &-outline {
         &-primary {
@@ -55,7 +55,10 @@
             transition: $transition;
 
             &:hover {
-                background: #cbcaca;
+                border: solid 1px #cbcaca;
+                background: #717171;
+                box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.5);
+                color: #ebebeb;
             }
 
             @include up($md) {
@@ -65,6 +68,36 @@
     }
 
     @include up($md) {
-        padding: 7px 12px;
+        padding: 7px 6px;
+    }
+}
+
+.vue-slider {
+    padding: 13px !important;
+    height: 6px !important;
+
+    &-process {
+        background: #717171;
+    }
+
+    &-dot {
+        width: 25px !important;
+        height: 25px !important;
+        
+        &-handle {
+            background: #ebebeb;
+            border: none;
+            box-shadow: none;
+        }
+
+        &-tooltip {
+            display: none;
+        }
+    }
+
+    &:hover {
+        .vue-slider-process {
+            background: #717171;
+        }
     }
 }
