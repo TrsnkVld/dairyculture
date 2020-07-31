@@ -54,7 +54,8 @@
             background: #ebebeb;
             transition: $transition;
 
-            &:hover {
+            &:hover,
+            &.router-link-exact-active {
                 border: solid 1px #cbcaca;
                 background: #717171;
                 box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.5);

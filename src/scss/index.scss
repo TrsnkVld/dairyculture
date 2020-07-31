@@ -1,4 +1,3 @@
-@import "bootstrap-override";
 @import "variables";
 @import "mixins";
 @import "svgicons";
@@ -11,6 +10,7 @@ body {
     font-size: 16px;
     line-height: 19px;
     color: $black;
+    cursor: default;
 
     *:focus {
         outline: none;
@@ -32,6 +32,22 @@ body {
             padding: 0 10px;
         }
     }
+}
+
+.router-link-exact-active {
+    cursor: pointer;
+    pointer-events: none;
+}
+
+.col-3 {
+	overflow: visible;
+
+	&.col-lg-qwe {
+		@include up($lg) {
+			flex: 0 0 20%;
+			max-width: 20%;
+		}
+	}
 }
 
 .container {

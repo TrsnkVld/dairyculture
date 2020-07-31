@@ -1,13 +1,71 @@
-.filters-aside {
-	&-enter-active, &-leave-active {
-		transition: .4s ease;
-		transform: translateX(0);
-		opacity: 1;
-	}
+.route {
+    &-enter-active,
+    &-leave-active {
+        transition: opacity 0.5s;
+        opacity: 1;
+    }
 
-	&-enter, &-leave-to {
-		transition: .4s ease;
-		transform: translateX(200px);
-		opacity: 0;
-	}
+    &-enter,
+    &-leave-to {
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
 }
+
+.filters-aside {
+    &-enter-active,
+    &-leave-active {
+        transition: 0.4s ease;
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    &-enter,
+    &-leave-to {
+        transition: 0.4s ease;
+        transform: translateX(200px);
+        opacity: 0;
+    }
+}
+
+.range {
+    &-enter-active,
+    &-leave-active {
+        transition: 0.3s ease;
+        height: 71px;
+
+        .range-title,
+        .range-stripe {
+            opacity: 1;
+            transition-delay: .2s;
+        }
+    }
+
+    &-enter,
+    &-leave-to {
+        transition: 0.3s ease;
+        height: 0;
+        transition-delay: .2s;
+
+        .range-title,
+        .range-stripe {
+            opacity: 0;
+            transition-delay: 0s;
+        }
+    }
+}
+
+.card-cube {
+    &-enter-active,
+    &-leave-active {
+        transition: transform, opacity, 0.4s ease .2s;
+        opacity: 1;
+    }
+
+    &-enter,
+    &-leave-to {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+}
+
