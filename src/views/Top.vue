@@ -2,7 +2,7 @@
 	<main>
 		<b-container>
 			<transition-group tag="b-row" name="card-cube">
-				<b-col cols="3" lg="qwe" v-for="(item, index) in currentCards" :key="index">
+				<b-col cols="3" lg="qwe" v-for="(item, index) in currentCards" :key="index" > <!-- :style="`transition-delay: ${index*300}ms`" -->
 					<CardCube :item="item" />
 				</b-col>
 			</transition-group>
@@ -14,7 +14,7 @@
 import CardCube from "@/components/CardCube";
 
 export default {
-	name: "Home",
+	name: "Top",
 	components: {
 		CardCube,
 	},
@@ -38,6 +38,9 @@ export default {
 				return this.ind + (this.filteredLength - this.currentLength);
 			}
 		},
+		thisRouteName() {
+			return this.$route.name;
+		}
 	},
 	methods: {
 		scroll() {
@@ -60,7 +63,9 @@ export default {
 		},
 
 		filterCards() {
-			this.$store.state.cards.filter((el) => this.filteredCards.push(el));
+			this.$store.state.cards.filter((el) => {
+				if (el.theme === this.thisRouteName) this.filteredCards.push(el);
+			});
 		},
 	},
 	beforeMount() {

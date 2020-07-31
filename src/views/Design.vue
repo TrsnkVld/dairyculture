@@ -14,9 +14,9 @@
 import CardCube from "@/components/CardCube";
 
 export default {
-	name: "Home",
+	name: "Design",
 	components: {
-		CardCube,
+		CardCube
 	},
 	data: () => ({
 		currentCards: [],
@@ -38,6 +38,9 @@ export default {
 				return this.ind + (this.filteredLength - this.currentLength);
 			}
 		},
+		thisRouteName() {
+			return this.$route.name;
+		}
 	},
 	methods: {
 		scroll() {
@@ -60,7 +63,9 @@ export default {
 		},
 
 		filterCards() {
-			this.$store.state.cards.filter((el) => this.filteredCards.push(el));
+			this.$store.state.cards.filter((el) => {
+				if (el.theme === this.thisRouteName) this.filteredCards.push(el);
+			});
 		},
 	},
 	beforeMount() {
@@ -74,4 +79,17 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../scss/variables";
+@import "../scss/mixins";
+
+.col-3 {
+	overflow: visible;
+
+	&.col-lg-qwe {
+		@include up($lg) {
+			flex: 0 0 20%;
+			max-width: 20%;
+		}
+	}
+}
 </style>
