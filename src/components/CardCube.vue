@@ -34,14 +34,18 @@ export default {
     &::after {
         display: block;
         content: "";
+        pointer-events: none;
         padding-top: 100%;
         width: 100%;
-        pointer-events: none;
     }
 
     &:hover {
         box-shadow: $card-shadow-hovered;
         transform: scale(1.03);
+
+        &::after {
+            z-index: -10;
+        }
     }
 
     @include up($md) {
