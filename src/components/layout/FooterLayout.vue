@@ -24,27 +24,27 @@ export default {
 			{
 				icon: "feed",
 				title: "Feed",
-				url: "Home",
+				url: "home",
 			},
 			{
 				icon: "gallery",
 				title: "Gallery",
-				url: "Home",
+				url: "home",
 			},
 			{
 				icon: "deals",
 				title: "Deals",
-				url: "Home",
+				url: "home",
 			},
 			{
 				icon: "notify",
 				title: "Notify",
-				url: "Home",
+				url: "home",
 			},
 			{
 				icon: "profile",
 				title: "Profile",
-				url: "Home",
+				url: "home",
 			},
 		],
 	}),
