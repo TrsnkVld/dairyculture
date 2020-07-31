@@ -1,6 +1,6 @@
 <template>
 	<header class="header">
-		<b-container>
+		<b-container class="header-inner" :class="{ 'header-inner--hidden': !isHeaderShowing }">
 			<b-row>
 				<b-col cols="12" md="5" order-md="1" class="d-flex align-items-center">
 					<b-input-group class="header-search">
@@ -9,30 +9,30 @@
 						</b-input-group-prepend>
 						<b-form-input type="search" placeholder="Search" />
 					</b-input-group>
-					<svgicon name="settings" class="header-filters" @click="isFiltersShowing = !isFiltersShowing" />
+					<svgicon name="settings" class="header-filters" @click="onFilterClick" />
 				</b-col>
 				<b-col cols="12" md="7" order-md="0" class="d-flex align-items-center">
-					<b-link :to="{name: 'Home'}" class="d-none d-lg-block">
+					<b-link :to="{name: 'home'}" class="d-none d-lg-block">
 						<svgicon name="logo" class="header-logo" />
 					</b-link>
 
 					<div class="overflow-wrap">
-						<b-nav class="header-nav">
-							<b-nav-item
-								class="header-nav__item"
-								:to="{name: 'Home'}"
-								v-for="(item, index) in links"
-								:key="index"
-							>
-								<b-button variant="outline-primary">{{ item.name }}</b-button>
-							</b-nav-item>
-						</b-nav>
+						<nav class="header-nav">
+							<ul class="nav">
+								<li v-for="(item, index) in links" :key="index" class="nav-item">
+									<b-link
+										:to="{name: item.url}"
+										class="header-nav__item btn btn-outline-primary"
+									>{{ item.name }}</b-link>
+								</li>
+							</ul>
+						</nav>
 					</div>
 				</b-col>
 			</b-row>
 		</b-container>
 		<transition name="filters-aside">
-			<FilterAside v-if="isFiltersShowing" @onClose="isFiltersShowing = !isFiltersShowing" />
+			<FilterAside v-if="isFiltersShowing" @onClose="onFilterClick" />
 		</transition>
 	</header>
 </template>
@@ -43,30 +43,55 @@ import FilterAside from "@/components/elements/FilterAside";
 export default {
 	name: "HeaderLayout",
 	components: {
-		FilterAside
+		FilterAside,
 	},
 	data: () => ({
+		isHeaderShowing: true,
+		lastScrollPosition: 0,
 		isFiltersShowing: false,
 		value: [250000, 800000],
 		links: [
 			{
 				name: "Top",
-				url: "#1",
+				url: "top",
 			},
 			{
 				name: "Painters",
-				url: "",
+				url: "painters",
 			},
 			{
 				name: "Design",
-				url: "",
+				url: "design",
 			},
 			{
 				name: "Tags",
-				url: "",
+				url: "tags",
 			},
 		],
 	}),
+	methods: {
+		onFilterClick() {
+			this.isFiltersShowing = !this.isFiltersShowing;
+		},
+		onScroll() {
+			const currentScrollPosition =
+				window.pageYOffset || document.documentElement.scrollTop;
+			if (currentScrollPosition < 0) {
+				return;
+			}
+			if (Math.abs(currentScrollPosition - this.lastScrollPosition) < 60) {
+				return;
+			}
+			this.isHeaderShowing = currentScrollPosition < this.lastScrollPosition;
+			this.lastScrollPosition = currentScrollPosition;
+		},
+	},
+	mounted() {
+		window.addEventListener("scroll", this.onScroll);
+	},
+	beforeDestroy() {
+		window.removeEventListener("scroll", this.onScroll);
+	},
 };
 </script>
 
@@ -77,8 +102,6 @@ export default {
 	left: 0;
 	z-index: 2;
 	width: 100%;
-	padding: 10px 0;
-	background: #dbdbdbe6;
 
 	&-logo {
 		width: 97px;
@@ -108,6 +131,22 @@ export default {
 	}
 
 	&-nav {
+		ul {
+			@include adopt($lg) {
+				overflow: auto !important;
+				flex-flow: row !important;
+			}
+
+			@include adopt($md) {
+				padding: 0 5px 50px !important;
+			}
+
+			@include up($md) {
+				padding: 0;
+				margin: 0 -9px;
+			}
+		}
+
 		&__item {
 			display: block;
 			margin: 0 5px;
@@ -120,20 +159,6 @@ export default {
 			@include up($md) {
 				margin: 0 9px;
 			}
-		}
-
-		@include adopt($lg) {
-			overflow: auto !important;
-			flex-flow: row !important;
-		}
-
-		@include adopt($md) {
-			padding: 0 5px 50px !important;
-		}
-
-		@include up($md) {
-			padding: 0;
-			margin: 0 -9px;
 		}
 	}
 
@@ -148,8 +173,20 @@ export default {
 		}
 	}
 
-	@include up($md) {
-		padding: 26px 0;
+	.header-inner {
+		background: #dbdbdbe6;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		transition: transform $transition-md ease;
+
+		&.header-inner--hidden {
+			transform: translateY(-92px);
+		}
+
+		@include up($md) {
+			padding-top: 26px;
+			padding-bottom: 26px;
+		}
 	}
 }
 </style>
