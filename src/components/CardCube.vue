@@ -29,7 +29,7 @@ export default {
     cursor: pointer;
     background-position: center;
     background-size: cover;
-    transition: box-shadow, transform, $transition-md ease;
+    transition: $transition-md ease;
 
     &::after {
         display: block;

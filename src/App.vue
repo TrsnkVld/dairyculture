@@ -49,7 +49,7 @@ export default {
 #app {
 	background: #dbdbdb;
 	color: $black;
-	transition: background, color, $transition-md ease;
+	transition: $transition-md ease;
 
 	&.dark {
 		background: #222222;

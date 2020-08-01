@@ -145,8 +145,9 @@ export default {
 		height: 17px;
 		margin-right: 41px;
 		flex-shrink: 0;
+
 		path {
-			transition: $transition-md;
+			transition: $transition-md ease;
 		}
 	}
 
@@ -278,7 +279,7 @@ export default {
 		background: #dbdbdbe6;
 		padding-top: 10px;
 		padding-bottom: 10px;
-		transition: transform, background, $transition-md ease;
+		transition: $transition-md ease;
 
 		&.header-inner--hidden {
 			transform: translateY(-92px);
