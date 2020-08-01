@@ -16,8 +16,8 @@
             background: #d1d1d1;
         }
 
-        &[type="search"] {
-            padding-left: 0;
+        &[type="text"] {
+            padding-left: 34px;
         }
 
         @include up($md) {
@@ -55,6 +55,7 @@
             transition: $transition;
 
             &:hover,
+            &.btn-active,
             &.router-link-exact-active {
                 border: solid 1px #cbcaca;
                 background: #717171;

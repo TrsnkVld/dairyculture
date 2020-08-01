@@ -3,12 +3,29 @@
 		<b-container class="header-inner" :class="{ 'header-inner--hidden': !isHeaderShowing }">
 			<b-row>
 				<b-col cols="12" md="5" order-md="1" class="d-flex align-items-center">
-					<b-input-group class="header-search">
-						<b-input-group-prepend>
-							<svgicon name="search" width="14px" height="14px" />
-						</b-input-group-prepend>
-						<b-form-input type="search" placeholder="Search" />
-					</b-input-group>
+					<div class="header-search">
+						<svgicon name="search" width="14px" height="14px" />
+						<b-form-input v-model.trim="inputSearch" type="text" placeholder="Search" />
+
+						<transition name="header-search-dropdown">
+							<div class="header-search-dropdown" v-if="inputSearch && isHeaderShowing">
+								<a
+									v-for="item in searchList"
+									:key="item.name"
+									v-if="itemVisible(item)"
+									class="header-search-dropdown__item"
+									href="#!"
+								>
+									<div
+										class="img-preview"
+										:style="`background-image: url(${require('../../assets/img/' + item.img)})`"
+										alt="card-preview"
+									/>
+									<span>{{ item.author }}</span>
+								</a>
+							</div>
+						</transition>
+					</div>
 					<svgicon name="settings" class="header-filters" @click="onFilterClick" />
 				</b-col>
 				<b-col cols="12" md="7" order-md="0" class="d-flex align-items-center">
@@ -46,6 +63,7 @@ export default {
 		FilterAside,
 	},
 	data: () => ({
+		inputSearch: "",
 		isHeaderShowing: true,
 		lastScrollPosition: 0,
 		isFiltersShowing: false,
@@ -69,6 +87,11 @@ export default {
 			},
 		],
 	}),
+	computed: {
+		searchList() {
+			return this.$store.state.cards;
+		},
+	},
 	methods: {
 		onFilterClick() {
 			this.isFiltersShowing = !this.isFiltersShowing;
@@ -84,6 +107,11 @@ export default {
 			}
 			this.isHeaderShowing = currentScrollPosition < this.lastScrollPosition;
 			this.lastScrollPosition = currentScrollPosition;
+		},
+		itemVisible(item) {
+			let currentName = item.author.toLowerCase();
+			let currentInput = this.inputSearch.toLowerCase();
+			return currentName.includes(currentInput);
 		},
 	},
 	mounted() {
@@ -111,10 +139,63 @@ export default {
 	}
 
 	&-search {
-		padding-right: 10px;
+		margin-right: 10px;
+		position: relative;
+		width: 100%;
+
+		svg {
+			position: absolute;
+			top: 50%;
+			left: 12px;
+			transform: translateY(-50%);
+		}
+
+		&-dropdown {
+			position: absolute;
+			background: $white;
+			top: calc(100% + 10px);
+			left: 0;
+			width: 100%;
+			border-radius: $border-radius-md;
+			max-height: 250px;
+			overflow: auto;
+			z-index: 2;
+			box-shadow: $card-shadow;
+
+			&__item {
+				padding: 10px 15px;
+				display: flex;
+				align-items: center;
+				transition: background $transition ease;
+
+				.img-preview {
+					width: 30px;
+					margin-right: 15px;
+					background-size: cover;
+					border-radius: $border-radius;
+
+					&::before {
+						display: block;
+						content: "";
+						width: 100%;
+						padding-top: 100%;
+					}
+				}
+
+				&:hover {
+					background: #d1d1d1;
+					text-decoration: none;
+					color: $black;
+				}
+			}
+
+			@include up($md) {
+				border-radius: $border-radius-lg;
+			}
+		}
 
 		@include up($md) {
-			padding-right: 30px;
+			margin-right: 30px;
 		}
 	}
 

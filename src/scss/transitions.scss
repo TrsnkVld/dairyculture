@@ -69,3 +69,15 @@
     }
 }
 
+.header-search-dropdown {
+    &-enter-active,
+    &-leave-active {
+        transition: transform, opacity, 0.4s ease .2s;
+    }
+
+    &-enter,
+    &-leave-to {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+}

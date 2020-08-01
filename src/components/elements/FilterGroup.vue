@@ -6,10 +6,11 @@
 				<b-button
 					:key="i"
 					variant="outline-primary"
-					@click="(btn.name) ? showRange() : null"
+					:class="{'btn-active': i === activeBtn}"
+					@click="(btn.name) ? showRange() : null; setActiveBtn(i)"
 				>{{ (btn.name) ? btn.name : btn }}</b-button>
 				<transition name="range" :key="`anim-${i}`">
-					<div class="range" v-if="btn.range && isRangeShowing">
+					<div class="range" v-if="btn.range && isRangeShowing && i === activeBtn">
 						<p class="range-title" :key="`text-${i}`">${{ btn.range[0] | nf }} - ${{ btn.range[1] | nf }}</p>
 						<vue-slider
 							class="range-stripe"
@@ -42,12 +43,17 @@ export default {
 		},
 	},
 	data: () => ({
+		activeBtn: null,
 		isRangeShowing: false,
 	}),
 	methods: {
 		showRange() {
 			this.isRangeShowing = !this.isRangeShowing;
 		},
+
+		setActiveBtn(btnIndex) {
+			this.activeBtn = btnIndex;
+		}
 	},
 };
 </script>
