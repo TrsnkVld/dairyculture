@@ -1,5 +1,5 @@
 <template>
-	<footer class="footer">
+	<footer class="footer" :class="{'dark': appDarkTheme}">
 		<b-container>
 			<b-nav class="footer-nav justify-content-between justify-content-md-around align-items-center">
 				<b-nav-item
@@ -48,6 +48,17 @@ export default {
 			},
 		],
 	}),
+
+	computed: {
+		appDarkTheme: {
+			get: function () {
+				return this.$store.state.appDarkTheme;
+			},
+			set: function (newValue) {
+				this.$store.state.appDarkTheme = newValue;
+			},
+		},
+	},
 };
 </script>
 
@@ -59,6 +70,7 @@ export default {
 	z-index: 1;
 	width: 100%;
 	background: rgba(232, 232, 232, 0.9);
+	transition: background $transition-md ease;
 
 	&-nav {
 		padding: 15px 10px !important;
@@ -74,6 +86,10 @@ export default {
 				align-items: center;
 				text-align: center;
 				padding: 0;
+			}
+
+			path {
+				transition: fill $transition ease;
 			}
 
 			span {
@@ -93,7 +109,22 @@ export default {
 		pointer-events: none;
 	}
 
-	@include up($lg) {
+	&.dark {
+		background: #2b2b2b;
+
+		.footer-nav__item {
+			path {
+				fill: $white;
+			}
+		}
+
+		@include up($md) {
+			background: transparent;
+
+			.footer-nav {
+				background: #2b2b2b;
+			}
+		}
 	}
 }
 </style>

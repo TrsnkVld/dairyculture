@@ -1,5 +1,5 @@
 <template>
-	<div class="filter-group">
+	<div class="filter-group" :class="{'dark': appDarkTheme}">
 		<p class="filter-group__title" v-if="item.title">{{ item.title }}</p>
 		<div class="filter-group__item">
 			<template v-for="(btn, i) in item.items">
@@ -46,6 +46,16 @@ export default {
 		activeBtn: null,
 		isRangeShowing: false,
 	}),
+	computed: {
+		appDarkTheme: {
+			get: function() {
+				return this.$store.state.appDarkTheme;
+			},
+			set: function(newValue) {
+				this.$store.state.appDarkTheme = newValue;
+			}
+		}
+	},
 	methods: {
 		showRange() {
 			this.isRangeShowing = !this.isRangeShowing;
@@ -61,9 +71,10 @@ export default {
 <style lang="scss">
 .filter-group {
 	margin-top: 11px;
+	color: #717171;
 
 	&__title {
-		color: #717171;
+		color: inherit;
 		padding-top: 24px;
 		padding-bottom: 20px;
 		margin-bottom: 0;
@@ -99,6 +110,14 @@ export default {
 
 	&:first-of-type {
 		margin-top: 0;
+	}
+
+	&.dark {
+		color: #979797;
+
+		.filter-group__item {
+			color: $white;
+		}
 	}
 }
 </style>

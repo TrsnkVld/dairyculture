@@ -1,5 +1,5 @@
 <template>
-	<aside class="filters-aside d-flex flex-column">
+	<aside class="filters-aside d-flex flex-column" :class="{'dark': appDarkTheme}">
 		<div class="filters-aside__content">
 			<h2>
 				Filter
@@ -8,6 +8,10 @@
 
 			<FilterGroup v-for="(item, index) in filters" :item="item" :key="index" />
 		</div>
+		<b-button
+			@click="appDarkTheme = !appDarkTheme; changeTheme(appDarkTheme)"
+			class="change-theme"
+		>Смените цветовую палитру сайта</b-button>
 		<b-button class="filters-aside__btn">Apply</b-button>
 	</aside>
 </template>
@@ -16,7 +20,7 @@
 import FilterGroup from "@/components/elements/FilterGroup";
 
 export default {
-    name: "FilterAside",
+	name: "FilterAside",
 	components: {
 		FilterGroup,
 	},
@@ -54,6 +58,21 @@ export default {
 			},
 		],
 	}),
+	methods: {
+		changeTheme(bool) {
+			document.cookie = `isAppThemeDark=${bool}`;
+		}
+	},
+	computed: {
+		appDarkTheme: {
+			get: function () {
+				return this.$store.state.appDarkTheme;
+			},
+			set: function (newValue) {
+				this.$store.state.appDarkTheme = newValue;
+			},
+		},
+	},
 };
 </script>
 
@@ -65,12 +84,14 @@ export default {
 	z-index: 1;
 	height: 100vh;
 	background: #d1d1d1;
+	color: #717171;
 
 	&__content {
 		padding: 30px;
 		overflow: auto;
 
 		h2 {
+			color: inherit;
 			display: flex;
 			justify-content: space-between;
 		}
@@ -84,6 +105,22 @@ export default {
 		font-weight: normal;
 		padding: 18px;
 		margin-top: auto;
+	}
+
+	&.dark {
+		background: #1b1b1b;
+		color: #979797;
+
+		.filters-aside__btn {
+			background: #171717;
+			color: #d1d1d1;
+		}
+	}
+
+	.change-theme {
+		background: grey;
+		display: block;
+		margin: 0 auto;
 	}
 }
 

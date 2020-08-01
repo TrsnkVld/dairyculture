@@ -1,21 +1,22 @@
-@import "variables";
 @import "mixins";
 @import "svgicons";
 @import "ui";
 @import "transitions";
 
 body {
-    background: #dbdbdb;
     font-family: "Roboto", sans-serif;
     font-size: 16px;
     line-height: 19px;
-    color: $black;
     cursor: default;
 
     *:focus {
         outline: none;
         box-shadow: none;
     }
+}
+
+svg, button {
+    user-select: none;
 }
 
 .row {
@@ -76,5 +77,4 @@ h2 {
     font-size: 30px;
     font-weight: 700;
     line-height: 36px;
-    color: #717171;
 }

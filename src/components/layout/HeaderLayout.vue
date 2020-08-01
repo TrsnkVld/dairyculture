@@ -1,5 +1,5 @@
 <template>
-	<header class="header">
+	<header class="header" :class="{'dark': appDarkTheme}">
 		<b-container class="header-inner" :class="{ 'header-inner--hidden': !isHeaderShowing }">
 			<b-row>
 				<b-col cols="12" md="5" order-md="1" class="d-flex align-items-center">
@@ -91,6 +91,15 @@ export default {
 		searchList() {
 			return this.$store.state.cards;
 		},
+
+		appDarkTheme: {
+			get: function() {
+				return this.$store.state.appDarkTheme;
+			},
+			set: function(newValue) {
+				this.$store.state.appDarkTheme = newValue;
+			}
+		}
 	},
 	methods: {
 		onFilterClick() {
@@ -136,6 +145,9 @@ export default {
 		height: 17px;
 		margin-right: 41px;
 		flex-shrink: 0;
+		path {
+			transition: $transition-md;
+		}
 	}
 
 	&-search {
@@ -237,8 +249,16 @@ export default {
 				color: $black;
 			}
 
+			&:last-of-type {
+				margin-right: 10px;
+			}
+
 			@include up($md) {
 				margin: 0 9px;
+
+				&:last-of-type {
+					margin-right: 9px;
+				}
 			}
 		}
 	}
@@ -258,7 +278,7 @@ export default {
 		background: #dbdbdbe6;
 		padding-top: 10px;
 		padding-bottom: 10px;
-		transition: transform $transition-md ease;
+		transition: transform, background, $transition-md ease;
 
 		&.header-inner--hidden {
 			transform: translateY(-92px);
@@ -267,6 +287,42 @@ export default {
 		@include up($md) {
 			padding-top: 26px;
 			padding-bottom: 26px;
+		}
+	}
+
+	&.dark {
+		.header-logo {
+			path {
+				fill: $white;
+			}
+		}
+
+		.header-search {
+			.form-control {
+				background: #363636;
+				color: #979797;
+
+				&::placeholder {
+					color: #979797;
+				}
+			}
+
+			path {
+				fill: #979797;
+			}
+
+			&-dropdown {
+				background: #363636;
+			}
+		}
+
+		.btn-outline-primary {
+			border: solid 1px #363636;
+			background: #1b1b1b;
+		}
+
+		.header-inner {
+			background: #222222e6;
 		}
 	}
 }
