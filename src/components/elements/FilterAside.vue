@@ -61,7 +61,7 @@ export default {
 	methods: {
 		changeTheme(bool) {
 			document.cookie = `isAppThemeDark=${bool}`;
-		}
+		},
 	},
 	computed: {
 		appDarkTheme: {
@@ -94,6 +94,7 @@ export default {
 			color: inherit;
 			display: flex;
 			justify-content: space-between;
+			align-items: center;
 		}
 	}
 
@@ -128,5 +129,10 @@ export default {
 	width: 15px;
 	height: 15px;
 	cursor: pointer;
+
+	@include up($md) {
+		width: 25px;
+		height: 25px;
+	}
 }
 </style>
